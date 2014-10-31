@@ -8,3 +8,6 @@ aws:
       initial_position = start_of_file
       log_group_name = /var/log/syslog
     
+  ebs:
+    device: /dev/xvdf
+    mount_point: /mnt/storage

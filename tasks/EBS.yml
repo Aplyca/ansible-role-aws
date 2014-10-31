@@ -1,0 +1,24 @@
+---
+- name: Check if an attached device exists
+  command: "lsblk {{ aws['ebs']['device'] }}"
+  register: attached_device
+  ignore_errors: True
+  changed_when: False
+
+- name: Create mount point for Attacched Device {{ aws['ebs']['device'] }}
+  sudo: yes
+  file:
+    path: "{{ aws['ebs']['mount_point'] }}"
+    state: directory
+    mode: 0775
+
+#Ubuntu:     opts: defaults,discard,nofail,nobootwait
+- name: Mount Attacched Device /dev/xvdf
+  sudo: yes
+  mount:
+    name: "{{ aws['ebs']['mount_point'] }}"
+    src: "{{ aws['ebs']['device'] }}"
+    fstype: ext4
+    opts: defaults,nofail
+    state: mounted
+  when: attached_device|success
