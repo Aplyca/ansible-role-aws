@@ -1,4 +1,7 @@
 ---
+
+#TODO: Isntall awslogs agent
+
 - name: Make sure the AWS Logs config is present
   template: 
     src: awslogs.conf.j2 
