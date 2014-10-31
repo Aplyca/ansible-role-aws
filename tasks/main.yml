@@ -1,6 +1,8 @@
 ---
 
 #TODO: Isntall awslogs agent
+- name: Download the cloudwatch agent installer
+   get_url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py dest=/root mode=0555
 
 - name: Make sure the AWS Logs config is present
   template: 
