@@ -1,7 +1,0 @@
----
-#TODO: Isntall awslogs agent
-
-- name: Make sure the AWS Logs config is present
-  template:
-    src: awslogs.conf.j2
-    dest: /var/awslogs/etc/awslogs.conf

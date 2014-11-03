@@ -2,12 +2,8 @@ aws:
   logs:
     - 
       file: /var/log/syslog
-      datetime_format = "%b %d %H:%M:%S"
-      buffer_duration = 5000
-      log_stream_name = "{{ Instance-ID }}"
-      initial_position = start_of_file
-      log_group_name = /var/log/syslog
-    
-  ebs:
-    device: /dev/xvdf
-    mount_point: /mnt/storage
+      datetime_format: "%b %d %H:%M:%S"
+      buffer_duration: 5000
+      log_stream_name: "{{ InstanceID |deafult('') }}"
+      initial_position: start_of_file
+      log_group_name: /var/log/syslog
