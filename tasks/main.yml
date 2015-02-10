@@ -1,27 +1,13 @@
 ---
-
 - name: Download AWS Log installer
   get_url:
-      url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
-          dest: /tmp/awslogs-agent-setup.py
-              mode: 0550
-
-              - name: Install AWS Logs deamon
-                shell: /usr/bin/python /tmp/awslogs-agent-setup.py -n -r ap-southeast-2 -c /var/log/syslog
-
-                - name: Make sure the AWS Logs config is present
-                  template:
-                      src: awslogs.conf.j2
-                          dest: /var/awslogs/etc/awslogs.conf
-
-- name: Download AWS Log installer
-  get_url:
-    url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+    url: "{{ aws_log_agent_url }}"
     dest: /tmp/awslogs-agent-setup.py
-    mode: 0440
 
 - name: Install AWS Logs deamon
-  script: python /tmp/awslogs-agent-setup.py -n -r ap-southeast-2 -c /var/log/syslog 
+  shell: /usr/bin/python /tmp/awslogs-agent-setup.py -n -r {{ aws_region }} -c {{ item }}
+  with_items:
+    - /var/log/syslog
 
 - name: Make sure the AWS Logs config is present
   template:
