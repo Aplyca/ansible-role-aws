@@ -1,5 +1,13 @@
 ---
-#TODO: Isntall awslogs agent
+- name: Download AWS Log installer
+  get_url:
+    url: "{{ aws_log_agent_url }}"
+    dest: /tmp/awslogs-agent-setup.py
+
+- name: Install AWS Logs deamon
+  shell: /usr/bin/python /tmp/awslogs-agent-setup.py -n -r {{ aws_region }} -c {{ item }}
+  with_items:
+    - /var/log/syslog
 
 - name: Make sure the AWS Logs config is present
   template:
