@@ -1,12 +1,9 @@
-general:
-  build_dir: tests
-
 dependencies:
   pre:
-      - sudo pip install -r build/requirements.txt
+    - sudo pip install -r build/requirements.txt
 
 test:
   pre:
-    - sudo ln -s ansible-role-aws ../../aplyca.AWS
+    - sudo ln -s ansible-role-aws ../aplyca.AWS
   override:
-    - tests/test.sh
+    - tests/tests.sh
