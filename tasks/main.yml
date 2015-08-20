@@ -26,19 +26,16 @@
     dest: /var/awslogs/etc/awslogs.conf
 
 - name: Make sure the AWS-CLI directory is present
-  sudo: yes
   file:
     dest: "~/.aws/"
     state: directory
 
 - name: Use AWS Credentials
-  sudo: yes
   template:
     src: awscredentials.j2
     dest: ~/.aws/credentials
 
 - name: Use AWS Config
-  sudo: yes
   template:
     src: awsconfigure.j2
     dest: ~/.aws/config
