@@ -2,7 +2,13 @@
 
 [![Build Status](https://travis-ci.org/Aplyca/ansible-role-aws.svg?branch=master)](https://travis-ci.org/Aplyca/ansible-role-aws)
 [![Circle CI](https://circleci.com/gh/Aplyca/ansible-role-aws.svg?style=svg)](https://circleci.com/gh/Aplyca/ansible-role-aws)
+
 Ansible Role that installs and configure AWS CLI on Debian/Ubuntu.
+
+General tasks in AWS:
+- As an enhacement it should contains the aws-cli
+- Use aws-cli to syn s3
+- Use aws-cli to send logs to cloudwatch
 
 ## Requirements
 

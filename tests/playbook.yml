@@ -1,6 +1,8 @@
 ---
 - hosts: all
-  roles:
-    - mauricios.Essentials
-  vars_files:
-    - "vars.yml"
+  tasks:
+  - name: Test if AWS CLI is installed
+    sudo: yes
+    shell: "aws --help"
+    register: result
+    failed_when: "'AWS' not in result.stdout"

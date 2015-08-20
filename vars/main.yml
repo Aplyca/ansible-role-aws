@@ -1,0 +1,4 @@
+aws_log_agent_url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
+aws_region: ap-southeast-2
+python_pip: https://bootstrap.pypa.io/get-pip.py
+python_pip_file: /tmp/get-pip.py
