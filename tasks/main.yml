@@ -10,18 +10,16 @@
   pip: 
     name: awscli    
 
-- name: Download AWS Log installer
+- name: Download AWS CloudWatch Logs installer
   get_url:
-    url: "{{ aws_log_agent_url }}"
+    url: "{{ aws['cloudwatch']['agent_url'] }}"
     dest: /tmp/awslogs-agent-setup.py
 
-- name: Install AWS Logs deamon
+- name: Install AWS CloudWatch Logs deamon
   sudo: yes
-  shell: /usr/bin/python /tmp/awslogs-agent-setup.py -n -r {{ aws_region }} -c {{ item }}
-  with_items:
-    - /var/log/syslog
+  shell: "/usr/bin/python /tmp/awslogs-agent-setup.py --non-interactive --region {{ aws['cloudwatch']['region'] }} -c /var/awslogs/etc/aws.conf"
 
-- name: Make sure the AWS Logs config is present
+- name: Make sure the AWS CloudWatch Logs config is present
   sudo: yes
   template:
     src: awslogs.conf.j2
