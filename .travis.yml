@@ -11,8 +11,7 @@ install:
   - sudo pip install -r build/requirements.txt
 
 script:
-  - pwd
-  - tests/test.sh
+  - tests/tests.sh
 
 notifications:
   email: false

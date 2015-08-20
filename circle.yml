@@ -6,5 +6,4 @@ test:
   pre:
     - sudo ln -s ansible-role-aws ../aplyca.AWS
   override:
-    - pwd
-    - tests/test.sh
+    - tests/tests.sh
