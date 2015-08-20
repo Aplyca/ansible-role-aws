@@ -1,6 +1,7 @@
 ---
 - hosts: all
   roles:
-    - mauricios.Essentials
+    - aplyca.Essentials
+    - aplyca.Aws
   vars_files:
     - "vars.yml"
