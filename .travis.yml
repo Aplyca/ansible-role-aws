@@ -4,13 +4,14 @@ python: "2.7"
 
 before_install:
   - sudo apt-get update -qq
-  - ln -s ansible-role-aws ../mauricios.AWS
+  - ln -s ansible-role-aws ../aplyca.AWS
 
 install:
   # Install Ansible.
   - sudo pip install -r build/requirements.txt
 
 script:
+  - pwd
   - tests/test.sh
 
 notifications:
