@@ -1,4 +1,15 @@
 ---
+- name: Make sure Python pip is present using apt
+  sudo: yes
+  apt: 
+    name: python-pip
+    state: present
+    
+- name: make sure AWS CLI is present
+  sudo: yes
+  pip: 
+    name: awscli    
+
 - name: Download AWS Log installer
   get_url:
     url: "{{ aws_log_agent_url }}"
@@ -15,17 +26,3 @@
   template:
     src: awslogs.conf.j2
     dest: /var/awslogs/etc/awslogs.conf
-
-- name: Download PIP
-  sudo: yes
-  get_url:
-    url: "{{ python_pip }}"
-    dest: "{{ python_pip_file }}"
-
-- name: Install PIP
-  sudo: yes
-  command: python2.7 "{{ python_pip_file }}"
-
-- name: Install AWS Cli
-  sudo: yes
-  pip: name=awscli
