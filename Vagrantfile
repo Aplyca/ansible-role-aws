@@ -5,13 +5,12 @@ Vagrant.configure(2) do |config|
           virtualbox.name = "Vagrant AWS"
 		  #override.vm.box = "chef/centos-7.0"
 		  override.vm.box = "ubuntu/trusty64"
-          #override.vm.box = "hashicorp/precise64"
       end
 
       # Asinging a provisioner
       config_machine.vm.provision :ansible, run: "always" do |provisioner|
-          provisioner.playbook = "playbook.yml"
-          provisioner.extra_vars = "custom_vars.yml" if File.file?("custom_vars.yml")
+        provisioner.playbook = "build/playbook.yml"
+        provisioner.extra_vars = "build/settings.yml" if File.file?("settings.yml")
       end
   end
 end
