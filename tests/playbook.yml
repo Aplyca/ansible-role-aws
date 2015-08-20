@@ -3,6 +3,6 @@
   tasks:
   - name: Test if AWS CLI is installed
     sudo: yes
-    shell: "aws --version"
+    shell: "which aws"
     register: result
-    failed_when: "'AWS' not in result.stdout"
+    failed_when: "'/usr/local/bin/aws' not in result.stdout"
