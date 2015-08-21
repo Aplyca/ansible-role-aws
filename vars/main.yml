@@ -4,6 +4,3 @@ python_pip_file: /tmp/get-pip.py
 aws:
   cloudwatch:
     agent_url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
-  cli:
-    access_key_id: 
-    secret_access_key: 
