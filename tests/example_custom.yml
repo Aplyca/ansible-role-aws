@@ -1,0 +1,4 @@
+aws:
+  cli:
+    access_key_id: xxxxxxxxxxxxxxx
+    secret_access_key: xxxxxxxxxxxxxxxx

@@ -1,4 +1,6 @@
+---
 aws:
   cloudwatch:
     agent_url: https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py
     conf_file: "/var/awslogs/etc/awslogs.conf"
+

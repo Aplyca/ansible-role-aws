@@ -25,3 +25,18 @@
   template:
     src: awslogs.conf.j2
     dest: "{{ aws['cloudwatch']['conf_file'] }}"
+
+- name: Make sure the AWS-CLI directory is present
+  file:
+    dest: "~/.aws/"
+    state: directory
+
+- name: Use AWS Credentials
+  template:
+    src: awscredentials.j2
+    dest: ~/.aws/credentials
+
+- name: Use AWS Config
+  template:
+    src: awsconfigure.j2
+    dest: ~/.aws/config
