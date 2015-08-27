@@ -18,9 +18,10 @@
 - name: Install AWS CloudWatch Logs deamon
   sudo: yes
   shell: "/usr/bin/python /tmp/awslogs-agent-setup.py --non-interactive --region {{ aws['cloudwatch']['region'] }} -c /var/awslogs/etc/aws.conf"
+    creates: "{{ aws['cloudwatch']['conf_file'] }}"
 
 - name: Make sure the AWS CloudWatch Logs config is present
   sudo: yes
   template:
     src: awslogs.conf.j2
-    dest: /var/awslogs/etc/awslogs.conf
+    dest: "{{ aws['cloudwatch']['conf_file'] }}"
