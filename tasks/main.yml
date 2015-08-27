@@ -25,6 +25,7 @@
   template:
     src: awslogs.conf.j2
     dest: "{{ aws['cloudwatch']['conf_file'] }}"
+  notify: restart awslogs
 
 - name: Make sure the AWS-CLI directory is present
   file:
