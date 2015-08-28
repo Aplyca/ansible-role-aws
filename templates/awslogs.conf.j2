@@ -1,3 +1,4 @@
+# {{ ansible_managed }}
 #
 # ------------------------------------------
 # CLOUDWATCH LOGS AGENT CONFIGURATION FILE
@@ -117,13 +118,12 @@ encoding = utf-8
 #  %c           Locale's appropriate date and time representation.                                      Tue Aug 16 21:30:00 1988 (en_US)
 # ----------------------------------------------------------------------------------------------------------------------
 
-{% for log in aws['cloudwatch']['logs'] %}
-[/var/log/syslog]
-datetime_format = {{ log.datetime_format }}
-file = {{ log.file }}
-buffer_duration = {{ log.buffer_duration }}
-log_stream_name = {{ log.log_stream_name }}
-initial_position = {{ log.initial_position }}
-log_group_name = {{ log.log_group_name }}
+{% if aws.cloudwatch.logs is defined %}
+{% for log, log_settings in aws.cloudwatch.logs|dictsort(true) if log_settings %}
+[{{ log }}]
+{% for setting, value in log_settings|dictsort(true) %}
+{{ setting }} = {{ value }}
+{% endfor%}
 
 {% endfor%}
+{% endif %}

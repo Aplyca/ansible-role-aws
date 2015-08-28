@@ -2,9 +2,18 @@ aws:
   cloudwatch:
     region: us-east-1
     logs:
-      - file: /var/log/syslog
+      syslog:
+        file: /var/log/syslog
         datetime_format: "%b %d %H:%M:%S"
         buffer_duration: 5000
-        log_stream_name: "{{ InstanceID |default('') }}"
+        log_stream_name: "{ hostname }"
         initial_position: start_of_file
         log_group_name: /var/log/syslog
+        encoding: utf-8
+  cli:
+    profiles:
+      default:
+        aws_access_key_id: "THISISYOURACCESSKEY"
+        aws_secret_access_key: "THISISYOURSECRETACCESSKEY"
+        region: us-east-1
+        ouput: json

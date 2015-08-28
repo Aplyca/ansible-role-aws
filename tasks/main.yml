@@ -1,14 +1,14 @@
 ---
 - name: Make sure Python pip is present using apt
   sudo: yes
-  apt: 
+  apt:
     name: python-pip
     state: present
-    
+
 - name: make sure AWS CLI is present
   sudo: yes
-  pip: 
-    name: awscli    
+  pip:
+    name: awscli
 
 - name: Download AWS CloudWatch Logs installer
   get_url:
@@ -18,6 +18,7 @@
 - name: Install AWS CloudWatch Logs deamon
   sudo: yes
   shell: "/usr/bin/python /tmp/awslogs-agent-setup.py --non-interactive --region {{ aws['cloudwatch']['region'] }} -c /var/awslogs/etc/aws.conf"
+  args:
     creates: "{{ aws['cloudwatch']['conf_file'] }}"
 
 - name: Make sure the AWS CloudWatch Logs config is present
@@ -34,10 +35,12 @@
 
 - name: Use AWS Credentials
   template:
-    src: awscredentials.j2
+    src: credentials.j2
     dest: ~/.aws/credentials
+    mode: 0600
 
 - name: Use AWS Config
   template:
-    src: awsconfigure.j2
+    src: config.j2
     dest: ~/.aws/config
+    mode: 0600
