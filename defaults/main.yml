@@ -6,7 +6,7 @@ aws:
         file: /var/log/syslog
         datetime_format: "%b %d %H:%M:%S"
         buffer_duration: 5000
-        log_stream_name: "{ hostname }"
+        log_stream_name: hostname
         initial_position: start_of_file
         log_group_name: /var/log/syslog
         encoding: utf-8

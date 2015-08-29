@@ -121,9 +121,13 @@ encoding = utf-8
 {% if aws.cloudwatch.logs is defined %}
 {% for log, log_settings in aws.cloudwatch.logs|dictsort(true) if log_settings %}
 [{{ log }}]
-{% for setting, value in log_settings|dictsort(true) %}
-{{ setting }} = {{ value }}
-{% endfor%}
+file: {{ log_settings.file | default('/var/log/syslog') }}
+datetime_format = {{ log_settings.datetime_format | default('%b %d %H:%M:%S') }}
+buffer_duration = {{ log_settings.buffer_duration | default('5000') }}
+log_stream_name = {{'{'+log_settings.log_stream_name | default('hostname')+'}'}}
+initial_position = {{ log_settings.initial_position | default('start_of_file') }}
+log_group_name = {{ log_settings.log_group_name | default(log_settings.file) }}
+encoding = {{ log_settings.encoding | default('utf-8') }}
 
 {% endfor%}
 {% endif %}
