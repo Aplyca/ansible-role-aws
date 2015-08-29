@@ -1,5 +1,5 @@
-# README.md
-# Ansible Role: AWS
+Ansible Role AWS
+================
 
 An Ansible role that installs AWSCli and AWS CloudWatch Logs
 
@@ -13,13 +13,15 @@ General tasks in AWS:
 - Use aws-cli to syn s3
 - Use aws-cli to send logs to cloudwatch
 
-## Requirements
+Requirements
+------------
 
 Use hash behavior for variables in ansible.cfg
 See example: https://github.com/Aplyca/ansible-role-aws/blob/master/tests/ansible.cfg
 See official docs: http://docs.ansible.com/intro_configuration.html#hash-behaviour
 
-## Installation
+Installation
+------------
 
 Using ansible galaxy:
 ```bash
@@ -31,15 +33,18 @@ dependencies:
   - { role: aplyca.AWS }
 ```
 
-## Role Variables
+Role Variables
+--------------
 
 See default variables: https://github.com/Aplyca/ansible-role-aws/blob/master/defaults/main.yml
 
-## Dependencies
+Dependencies
+------------
 
 None.
 
-## Testing
+Testing
+-------
 ### Using Vagrant:
 
 ```bash
@@ -51,10 +56,12 @@ tests/vagrant.sh
 tests/docker.sh
 ```
 
-## License
+License
+-------
 
 MIT / BSD
 
-## Author Information
+Author Information
+------------------
 
 Mauricio Sánchez from Aplyca SAS (http://www.aplyca.com)
