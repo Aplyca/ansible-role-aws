@@ -1,4 +1,7 @@
-# Ansible Role: AWS CLI
+# README.md
+# Ansible Role: AWS
+
+An Ansible role that installs AWSCli and AWS CloudWatch Logs
 
 [![Build Status](https://travis-ci.org/Aplyca/ansible-role-aws.svg?branch=master)](https://travis-ci.org/Aplyca/ansible-role-aws)
 [![Circle CI](https://circleci.com/gh/Aplyca/ansible-role-aws.svg?style=svg)](https://circleci.com/gh/Aplyca/ansible-role-aws)
