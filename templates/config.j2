@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 
-{% if aws.cli.profiles is defined %}
-{% for profile, profile_settings in aws.cli.profiles|dictsort(true) if profile_settings %}
+{% if aws.profiles is defined %}
+{% for profile, profile_settings in aws.profiles|dictsort(true) if profile_settings %}
 [{{ profile }}]
 region = {{ profile_settings.region | default('us-east-1')}}
 output = {{ profile_settings.output | default('json') }}

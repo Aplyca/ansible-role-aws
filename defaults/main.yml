@@ -1,6 +1,6 @@
 aws:
   cloudwatch:
-    region: us-east-1
+    profile: default
     logs:
       syslog:
         file: /var/log/syslog
@@ -10,10 +10,9 @@ aws:
         initial_position: start_of_file
         log_group_name: /var/log/syslog
         encoding: utf-8
-  cli:
-    profiles:
-      default:
-        aws_access_key_id: "THISISYOURACCESSKEY"
-        aws_secret_access_key: "THISISYOURSECRETACCESSKEY"
-        region: us-east-1
-        ouput: json
+  profiles:
+    default:
+      aws_access_key_id: "THISISYOURACCESSKEY"
+      aws_secret_access_key: "THISISYOURSECRETACCESSKEY"
+      region: us-east-1
+      ouput: json

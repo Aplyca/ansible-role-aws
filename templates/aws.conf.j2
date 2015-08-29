@@ -1,10 +1,13 @@
 # {{ ansible_managed }}
-
+[plugins]
+cwlogs = cwlogs
 {% if aws.profiles is defined %}
 {% for profile, profile_settings in aws.profiles|dictsort(true) if profile_settings %}
-[{{ profile }}]
-aws_access_key_id = {{ profile_settings.aws_access_key_id | default('')}}
+{% if profile ==  aws.cloudwatch.profile %}
+[default]
+aws_access_key_id = {{ profile_settings.aws_access_key_id | default('') }}
 aws_secret_access_key = {{ profile_settings.aws_secret_access_key | default('') }}
-
+region = {{ profile_settings.region | default('us-east-1') }}
+{% endif %}
 {% endfor%}
 {% endif %}

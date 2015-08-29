@@ -15,9 +15,11 @@
     url: "{{ aws['cloudwatch']['agent_url'] }}"
     dest: /tmp/awslogs-agent-setup.py
 
+- debug: var=aws
+
 - name: Install AWS CloudWatch Logs deamon
   sudo: yes
-  shell: "/usr/bin/python /tmp/awslogs-agent-setup.py --non-interactive --region {{ aws['cloudwatch']['region'] }} -c /var/awslogs/etc/aws.conf"
+  shell: "/usr/bin/python /tmp/awslogs-agent-setup.py --non-interactive --region us-east-1 -c /var/awslogs/etc/aws.conf"
   args:
     creates: "{{ aws['cloudwatch']['conf_file'] }}"
 
@@ -27,6 +29,13 @@
     src: awslogs.conf.j2
     dest: "{{ aws['cloudwatch']['conf_file'] }}"
   notify: restart awslogs
+
+- name: Use CloudWatch Logs credentials
+  sudo: yes
+  template:
+    src: aws.conf.j2
+    dest: /var/awslogs/etc/aws.conf
+    mode: 0600
 
 - name: Make sure the AWS-CLI directory is present
   file:
