@@ -1,4 +1,5 @@
 ---
+- debug: var=aws    
 - name: Make sure Python pip is present using apt
   sudo: yes
   apt:
@@ -14,8 +15,6 @@
   get_url:
     url: "{{ aws['cloudwatch']['agent_url'] }}"
     dest: /tmp/awslogs-agent-setup.py
-
-- debug: var=aws
 
 - name: Install AWS CloudWatch Logs deamon
   sudo: yes
