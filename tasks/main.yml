@@ -1,5 +1,4 @@
----
-- debug: var=aws    
+---    
 - name: Make sure Python pip is present using apt
   sudo: yes
   apt:

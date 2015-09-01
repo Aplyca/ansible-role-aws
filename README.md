@@ -10,7 +10,7 @@ Ansible Role that installs and configure AWS CLI on Debian/Ubuntu.
 
 General tasks in AWS:
 - As an enhacement it should contains the aws-cli
-- Use aws-cli to syn s3
+- Use aws-cli to sync s3
 - Use aws-cli to send logs to cloudwatch
 
 Requirements
@@ -45,12 +45,12 @@ None.
 
 Testing
 -------
-### Using Vagrant:
+Using Vagrant:
 
 ```bash
 tests/vagrant.sh
 ```
-### Using Docker:
+Using Docker:
 
 ```bash
 tests/docker.sh
