@@ -35,9 +35,19 @@ dependencies:
 
 Role Variables
 --------------
-
 See default variables: https://github.com/Aplyca/ansible-role-aws/blob/master/defaults/main.yml
 
+
+** Add user for AWS S3 Profile **
+```
+aws:
+  profiles:
+    user:
+      aws_access_key_id: "THISISTHEUSERACCESSKEY"
+      aws_secret_access_key: "THISISTHEUSERSECRETACCESSKEY"
+      region: us-east-1
+      ouput: json
+```
 Dependencies
 ------------
 
