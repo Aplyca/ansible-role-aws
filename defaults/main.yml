@@ -11,8 +11,4 @@ aws:
         log_group_name: /var/log/syslog
         encoding: utf-8
   profiles:
-    default:
-      aws_access_key_id: "THISISYOURACCESSKEY"
-      aws_secret_access_key: "THISISYOURSECRETACCESSKEY"
-      region: us-east-1
-      ouput: json
+    default: []
