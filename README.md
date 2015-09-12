@@ -8,10 +8,11 @@ An Ansible role that installs AWSCli and AWS CloudWatch Logs
 
 Ansible Role that installs and configure AWS CLI on Debian/Ubuntu.
 
-General tasks in AWS:
-- As an enhacement it should contains the aws-cli
-- Use aws-cli to sync s3
-- Use aws-cli to send logs to cloudwatch
+General tasks in AWS
+------------
+- This role installs the aws-cli
+- You can use aws-cli to sync s3
+- You can use aws-cli to send logs to cloudwatch
 
 Requirements
 ------------
