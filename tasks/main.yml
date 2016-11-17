@@ -1,4 +1,7 @@
 ---
+- debug: var=aws verbosity=1
+  tags: vars
+
 - name: Make sure Python pip is present using apt
   become: yes
   apt:
