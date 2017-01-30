@@ -127,5 +127,6 @@ log_stream_name = {{'{'+log.log_stream_name | default('hostname')+'}'}}
 initial_position = {{ log.initial_position | default('start_of_file') }}
 log_group_name = {{ log.log_group_name | default(log.file) }}
 encoding = {{ log.encoding | default('utf-8') }}
+multi_line_start_pattern = {{ log.multi_line_start_pattern | default("^[^\s]") }}
 
 {% endfor%}
