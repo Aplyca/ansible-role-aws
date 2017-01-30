@@ -1,10 +1,8 @@
 # {{ ansible_managed }}
 
-{% if aws.profiles is defined %}
-{% for profile, profile_settings in aws.profiles|dictsort(true) if profile_settings %}
-[{% if profile != "default" %}profile {% endif %}{{ profile }}]
-region = {{ profile_settings.region | default('us-east-1')}}
-output = {{ profile_settings.output | default('json') }}
+{% for profile in aws.profiles %}
+[{% if profile.name != "default" %}profile {% endif %}{{ profile.name }}]
+region = {{ profile.region | default('us-east-1')}}
+output = {{ profile.output | default('json') }}
 
 {% endfor%}
-{% endif %}

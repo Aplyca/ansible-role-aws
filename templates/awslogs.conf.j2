@@ -118,16 +118,14 @@ encoding = utf-8
 #  %c           Locale's appropriate date and time representation.                                      Tue Aug 16 21:30:00 1988 (en_US)
 # ----------------------------------------------------------------------------------------------------------------------
 
-{% if aws.cloudwatch.logs is defined %}
-{% for log, log_settings in aws.cloudwatch.logs|dictsort(true) if log_settings %}
-[{{ log }}]
-file: {{ log_settings.file | default('/var/log/syslog') }}
-datetime_format = {{ log_settings.datetime_format | default('%b %d %H:%M:%S') }}
-buffer_duration = {{ log_settings.buffer_duration | default('5000') }}
-log_stream_name = {{'{'+log_settings.log_stream_name | default('hostname')+'}'}}
-initial_position = {{ log_settings.initial_position | default('start_of_file') }}
-log_group_name = {{ log_settings.log_group_name | default(log_settings.file) }}
-encoding = {{ log_settings.encoding | default('utf-8') }}
+{% for log in aws.cloudwatch.logs %}
+[{{ log.name }}]
+file = {{ log.file | default('/var/log/syslog') }}
+datetime_format = {{ log.datetime_format | default('%b %d %H:%M:%S') }}
+buffer_duration = {{ log.buffer_duration | default('5000') }}
+log_stream_name = {{'{'+log.log_stream_name | default('hostname')+'}'}}
+initial_position = {{ log.initial_position | default('start_of_file') }}
+log_group_name = {{ log.log_group_name | default(log.file) }}
+encoding = {{ log.encoding | default('utf-8') }}
 
 {% endfor%}
-{% endif %}

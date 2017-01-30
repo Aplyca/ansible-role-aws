@@ -5,12 +5,12 @@
     - { role: Aplyca.AWS, tags: ["aws"] }
   post_tasks:
     - name: Test if AWS CLI is installed
-      sudo: yes
+      become: yes
       shell: "which aws"
       register: result
       failed_when: "'/usr/local/bin/aws' not in result.stdout"
     - name: Test if AWS CloudWatch Logs agent is present and running
-      sudo: yes
+      become: yes
       shell: "service awslogs status"
       register: result
       failed_when: "'is running' not in result.stdout"
