@@ -1,3 +1,5 @@
 .vagrant
-custom_vars.yml
+custom*
 *.box
+.vault
+*.retry

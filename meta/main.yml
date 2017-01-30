@@ -1,7 +1,9 @@
 ---
+dependencies: []
+
 galaxy_info:
-  author: aplyca
-  description: Install AWSCLI ans AWSlogs
+  author: AWS
+  description: AWS for Debian/Ubuntu.
   company: "Aplyca SAS"
   license: "license (BSD, MIT)"
   min_ansible_version: 1.4
@@ -13,5 +15,4 @@ galaxy_info:
     versions:
     - all
   categories:
-    - cloud
-    - system
+    - web
