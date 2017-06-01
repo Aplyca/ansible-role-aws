@@ -1,17 +1,16 @@
 ---
 - debug: var=aws verbosity=1
-  tags: vars
+  tags:
+    - vars
+    - always
 
-- name: Make sure Python pip is present using apt
+- name: Make sure AWS CLI is present
   become: yes
   apt:
-    name: python-pip
+    name: "awscli"
     state: present
-
-- name: make sure AWS CLI is present
-  become: yes
-  pip:
-    name: awscli
+    update_cache: yes
+    cache_valid_time: 86400
 
 - name: Download AWS CloudWatch Logs installer
   get_url:

@@ -6,11 +6,11 @@
   post_tasks:
     - name: Test if AWS CLI is installed
       become: yes
-      shell: "which aws"
+      shell: "aws --version"
       register: result
-      failed_when: "'/usr/local/bin/aws' not in result.stdout"
+      failed_when: "'aws-cli' not in result.stdout"
     - name: Test if AWS CloudWatch Logs agent is present and running
       become: yes
       shell: "service awslogs status"
       register: result
-      failed_when: "'is running' not in result.stdout"
+      failed_when: "'active (running)' not in result.stdout"
