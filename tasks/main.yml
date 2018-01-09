@@ -1,8 +1,6 @@
 ---
 - debug: var=aws verbosity=1
-  tags:
-    - vars
-    - always
+  tags: vars
 
 - name: Make sure AWS CLI is present
   become: yes
