@@ -5,3 +5,10 @@
     name: awslogs
     state: restarted
     enabled: yes
+
+- name: start codedeploy-agent
+  become: yes
+  service:
+    name: codedeploy-agent
+    state: start
+    enabled: yes
