@@ -11,3 +11,5 @@ aws:
         log_group_name: /var/log/syslog
         encoding: utf-8
   profiles: []
+  codedeploy:
+    agent_url: https://bucket-name.s3.amazonaws.com/latest/install  
