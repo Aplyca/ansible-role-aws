@@ -12,4 +12,4 @@ aws:
         encoding: utf-8
   profiles: []
   codedeploy:
-    agent_url: https://us-east-1.s3.amazonaws.com/latest/install  
+    agent_url: https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install  
