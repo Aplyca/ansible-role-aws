@@ -5,10 +5,13 @@
 - name: Make sure AWS CLI is present
   become: yes
   apt:
-    name: "awscli"
+    name: "{{ item }}"
     state: present
     update_cache: yes
     cache_valid_time: 86400
+  with_items:
+    - ruby
+    - awscli
 
 - name: Download AWS CloudWatch Logs installer
   get_url:
@@ -51,3 +54,15 @@
     src: config.j2
     dest: ~/.aws/config
     mode: 0600
+
+- name: Download AWS CodeDeploy Agent installer
+  get_url:
+    url: "{{ aws.codedeploy.agent_url }}"
+    dest: /tmp/install
+
+- name: Install AWS CodeDeploy Agent
+  become: yes
+  shell: "/tmp/install auto"
+  args:
+    creates: "{{ aws.cloudwatch.conf_file }}"
+  notify: start codedeploy-agent
