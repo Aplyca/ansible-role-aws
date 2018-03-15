@@ -10,5 +10,5 @@
   become: yes
   service:
     name: codedeploy-agent
-    state: start
+    state: started
     enabled: yes
