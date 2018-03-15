@@ -59,6 +59,7 @@
   get_url:
     url: "{{ aws.codedeploy.agent_url }}"
     dest: /tmp/install
+    mode: 0755  
 
 - name: Install AWS CodeDeploy Agent
   become: yes
