@@ -64,5 +64,5 @@
   become: yes
   shell: "/tmp/install auto"
   args:
-    creates: "{{ aws.cloudwatch.conf_file }}"
+    creates: /etc/init.d/codedeploy-agent
   notify: start codedeploy-agent
