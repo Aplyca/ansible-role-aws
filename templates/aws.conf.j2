@@ -5,8 +5,10 @@ cwlogs = cwlogs
 {% for profile in aws.profiles %}
 {% if profile.name ==  aws.cloudwatch.profile %}
 [default]
+{% if profile.aws_access_key_id and profile.aws_secret_access_key %}
 aws_access_key_id = {{ profile.aws_access_key_id | default('') }}
 aws_secret_access_key = {{ profile.aws_secret_access_key | default('') }}
+{% endif %}
 region = {{ profile.region | default('us-east-1') }}
 
 {% endif %}
