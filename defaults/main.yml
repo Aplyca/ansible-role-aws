@@ -1,15 +1,7 @@
 aws:
-  cloudwatch:
-    profile: default
-    logs:
-      - name: syslog
-        file: /var/log/syslog
-        datetime_format: "%b %d %H:%M:%S"
-        buffer_duration: 5000
-        log_stream_name: hostname
-        initial_position: start_of_file
-        log_group_name: /var/log/syslog
-        encoding: utf-8
-  profiles: []
-  codedeploy:
-    agent_url: https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install  
+    cloudwatch:
+        profile: default
+    profiles: []
+    credentials: false
+    codedeploy:
+        enabled: false

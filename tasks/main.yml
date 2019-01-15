@@ -5,65 +5,53 @@
 - name: Make sure AWS CLI is present
   become: yes
   apt:
-    name: "{{ item }}"
-    state: present
-    update_cache: yes
-    cache_valid_time: 86400
+      name: awscli
+      state: present
+      update_cache: yes
+      cache_valid_time: 86400
+
+- name: Install AWS CloudWatch Logs agent
+  become: yes
+  apt:
+      deb: "{{ item }}"
+      state: present
+      force: yes
   with_items:
-    - ruby
-    - awscli
+      - https://s3.amazonaws.com/amazoncloudwatch-agent/ubuntu/amd64/latest/amazon-cloudwatch-agent.deb
+      - https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/debian_amd64/amazon-ssm-agent.deb
 
-- name: Download AWS CloudWatch Logs installer
-  get_url:
-    url: "{{ aws.cloudwatch.agent_url }}"
-    dest: /tmp/awslogs-agent-setup.py
+- name: Add AWS credentials
+  block:
+      - name: Make sure the AWS-CLI directory is present
+        file:
+            dest: "~/.aws/"
+            state: directory
 
-- name: Install AWS CloudWatch Logs deamon
-  become: yes
-  shell: "/usr/bin/python /tmp/awslogs-agent-setup.py --non-interactive --region us-east-1 -c /var/awslogs/etc/aws.conf"
-  args:
-    creates: "{{ aws.cloudwatch.conf_file }}"
+      - name: Use AWS Credentials
+        template:
+            src: credentials.j2
+            dest: ~/.aws/credentials
+            mode: 0600
 
-- name: Make sure the AWS CloudWatch Logs config is present
-  become: yes
-  template:
-    src: awslogs.conf.j2
-    dest: "{{ aws.cloudwatch.conf_file }}"
-  notify: restart awslogs
-
-- name: Use CloudWatch Logs credentials
-  become: yes
-  template:
-    src: aws.conf.j2
-    dest: /var/awslogs/etc/aws.conf
-    mode: 0600
-
-- name: Make sure the AWS-CLI directory is present
-  file:
-    dest: "~/.aws/"
-    state: directory
-
-- name: Use AWS Credentials
-  template:
-    src: credentials.j2
-    dest: ~/.aws/credentials
-    mode: 0600
-
-- name: Use AWS Config
-  template:
-    src: config.j2
-    dest: ~/.aws/config
-    mode: 0600
-
-- name: Download AWS CodeDeploy Agent installer
-  get_url:
-    url: "{{ aws.codedeploy.agent_url }}"
-    dest: /tmp/install
-    mode: 0755
+      - name: Use AWS Config
+        template:
+            src: config.j2
+            dest: ~/.aws/config
+            mode: 0600
+  when: aws.credentials
 
 - name: Install AWS CodeDeploy Agent
-  become: yes
-  shell: "/tmp/install auto"
-  args:
-    creates: /etc/init.d/codedeploy-agent
-  notify: start codedeploy-agent
+  block:
+      - name: Download AWS CodeDeploy Agent installer
+        get_url:
+            url: "{{ aws.codedeploy.agent_url }}"
+            dest: /tmp/install
+            mode: 0755
+
+      - name: Install AWS CodeDeploy Agent
+        become: yes
+        shell: "/tmp/install auto"
+        args:
+            creates: /etc/init.d/codedeploy-agent
+        notify: start codedeploy-agent
+  when: aws.codedeploy.enabled
