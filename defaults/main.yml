@@ -1,6 +1,7 @@
 aws:
     cloudwatch:
         profile: default
+        configuration: AmazonCloudWatch-Default
     profiles: []
     credentials: false
     codedeploy:
