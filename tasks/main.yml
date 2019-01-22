@@ -22,7 +22,7 @@
 
 - name: Configure AWS CloudWatch agent
   become: yes
-  shell: "amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:{{ aws.cloudwatch.configuration_name }} -s"
+  shell: "amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -c ssm:{{ aws.cloudwatch.configuration }} -s"
   args:
       chdir: "/opt/aws/amazon-cloudwatch-agent/bin/"
   tags: cloudwatch
